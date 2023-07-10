@@ -17,7 +17,8 @@ class ConditionsHelper {
       if (uppercaseCharCount > 0) strings.uppercaseLetters: false,
       if (lowercaseCharCount > 0) strings.lowercaseLetters: false,
       if (numericCharCount > 0) strings.numericCharacters: false,
-      if (specialCharCount > 0) strings.specialCharacters: false
+      if (specialCharCount > 0) strings.specialCharacters: false, 
+      strings.passwordsMatch : true
     };
   }
 
@@ -41,5 +42,19 @@ class ConditionsHelper {
       return oldValue;
   }
 
+  checkPasswordsMatch(TextEditingController confirmPasswordController,Function validator,
+      TextEditingController controller, String key, dynamic oldValue){
+    dynamic newValue;
+
+    /// If the userRequested Value is grater than 0 that means user select them and we have to check new value;
+    newValue = validator(controller.text, confirmPasswordController.text);
+    if (newValue == null)
+      return null;
+    else if (newValue != oldValue) {
+      _selectedCondition![key] = newValue;
+      return newValue;
+    } else
+      return oldValue;        
+  }
   Map<String, bool>? getter() => _selectedCondition;
 }

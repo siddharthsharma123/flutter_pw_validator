@@ -5,7 +5,7 @@ import 'package:flutter_pw_validator/Utilities/SizeConfig.dart';
 class ValidationTextWidget extends StatelessWidget {
   final Color color;
   final String text;
-  final int? value;
+  final dynamic value;
 
   ValidationTextWidget(
       {required this.color, required this.text, required this.value});
@@ -26,7 +26,7 @@ class ValidationTextWidget extends StatelessWidget {
           child: new Text(
             text.replaceFirst("-", value.toString()),
             style:
-                new TextStyle(fontSize: SizeConfig.width! * 0.04, color: color),
+                new TextStyle(fontSize: SizeConfig.width! * 0.08, color: color),
           ),
         )
       ],

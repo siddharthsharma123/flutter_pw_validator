@@ -36,4 +36,12 @@ class Validator {
         r"^(.*?[$&+,\:;/=?@#|'<>.^*()_%!-]){" + specialCount.toString() + ",}";
     return password.contains(new RegExp(pattern));
   }
+
+  bool passwordsMatch(String password, String confirmPassword) {
+    if (password == confirmPassword) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

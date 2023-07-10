@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 
 class AppHome extends StatelessWidget {
   final TextEditingController controller = new TextEditingController();
-
+  final TextEditingController controller2 = new TextEditingController();
   ///Passing a key to access the validate function
   final GlobalKey<FlutterPwValidatorState> validatorKey = GlobalKey<FlutterPwValidatorState>();
 
@@ -56,25 +56,53 @@ class AppHome extends StatelessWidget {
                   new SizedBox(
                     height: 5,
                   ),
-                  new FlutterPwValidator(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                    child: new TextField(
+                        controller: controller2,
+                        decoration: new InputDecoration(
+                            hintText: "Confirm Password",
+                            border: new OutlineInputBorder(
+                                borderSide: BorderSide()))),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft ,
+                    child: Text("Requirements",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 20,
+                  )),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                    alignment: Alignment.centerLeft ,
+                    child:                  FlutterPwValidator(
                     key: validatorKey,
                     controller: controller,
+                    confrimPasswordController: controller2,
                     minLength: 8,
-                    uppercaseCharCount: 2,
+                    uppercaseCharCount: 0,
                     lowercaseCharCount: 3,
                     numericCharCount: 3,
                     specialCharCount: 1,
                     normalCharCount: 3,
-                    width: 400,
-                    height: 200,
+                    width: MediaQuery.of(context).size.width*0.4,
+                    height:MediaQuery.of(context).size.height*0.15,
                     onSuccess: () {
-                      print("MATCHED");
                       ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
-                          content: new Text("Password is matched")));
+                          content: new Text("Password Valid")));
                     },
                     onFail: () {
-                      print("NOT MATCHED");
                     },
+                  ),
+                    ),
+                  SizedBox(
+                    height: 5,
                   ),
                 ],
               ),
